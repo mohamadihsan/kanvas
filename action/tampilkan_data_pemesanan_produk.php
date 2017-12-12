@@ -73,11 +73,14 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                 <i class="ace-icon fa fa-exclamation-triangle bigger-120"></i>
                                                 belum dibayar
                                             </span>';
+        $sub_array['konfirmasi']	        = ' <a href="./index.php?menu=pembayaran&faktur='.$row['nomor_faktur'].'" class="btn btn-warning btn-xs"><i class="ace-icon fa fa-file-text-o bigger-120"></i> Detail</a>
+                                          <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#konfirmasi" onclick="return konfirmasi(\''.$row['nomor_faktur'].'\')"><i class="ace-icon fa fa-money bigger-120"></i> Konfirmasi</button>';
     }else{
         $sub_array['status_pembayaran'] = '<span class="label label-success label-white middle">
                                                 <i class="ace-icon fa fa-check-square bigger-120"></i>
                                                 sudah dibayar
                                             </span>';
+          $sub_array['konfirmasi']	        = ' <a href="./index.php?menu=pembayaran&faktur='.$row['nomor_faktur'].'" class="btn btn-warning btn-xs"><i class="ace-icon fa fa-file-text-o bigger-120"></i> Detail</a>';
     }
 
     if ($sub_array['tanggal_pemesanan'] != NULL) {
