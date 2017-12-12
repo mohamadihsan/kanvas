@@ -25,20 +25,24 @@ while ($row = mysqli_fetch_assoc($result)) {
     $sub_array['nomor_faktur']      = $row['nomor_faktur'];
     $sub_array['id_supplier']       = $row['id_supplier'];
     $sub_array['id_pegawai']        = $row['id_pegawai'];
-    $sub_array['status_pemesanan']  = $row['status_pemesanan'];
+    $sub_array['status_pemesanan']  = strtoupper($row['status_pemesanan']);
     $sub_array['status_pembayaran'] = $row['status_pembayaran'];
     $sub_array['tanggal_pemesanan'] = $row['tanggal_pemesanan'];
-	$sub_array['action']	        = ' <button type="button" class="btn btn-warning btn-xs" data-toggle="collapse" data-target=".tampil_detail" onclick="return detail(\''.$row['nomor_faktur'].'\')"><i class="ace-icon fa fa-file-text-o bigger-120"></i> Detail</button>
-                                        <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#hapus" onclick="return hapus(\''.$row['nomor_faktur'].'\')"><i class="ace-icon fa fa-trash-o bigger-120"></i> Hapus</button>';  
-    $sub_array['action_diterima']    = ' <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#terima" onclick="return terima(\''.$row['nomor_faktur'].'\')"><i class="ace-icon fa fa-check-square bigger-120"></i> Terima</button>';   
-    
+	$sub_array['action']	        = ' <a href="./index.php?menu=pemesanan&faktur='.$row['nomor_faktur'].'" class="btn btn-warning btn-xs"><i class="ace-icon fa fa-file-text-o bigger-120"></i> Detail</a>
+                                        <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#hapus" onclick="return hapus(\''.$row['nomor_faktur'].'\')"><i class="ace-icon fa fa-trash-o bigger-120"></i> Hapus</button>';
+    $sub_array['action_diterima']    = ' <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#terima" onclick="return terima(\''.$row['nomor_faktur'].'\')"><i class="ace-icon fa fa-check-square bigger-120"></i> Terima</button>';
+
     // ubah tampilan data
     if ($sub_array['status_pemesanan'] == 'SP') {
-        $sub_array['status_pemesanan'] = '<span class="label label-info label-white middle">
+        $sub_array['status_pemesanan'] = '<span class="label label-warning label-white middle">
                                                 sedang diproses
                                             </span>';
-    }else{
+    }else if ($sub_array['status_pemesanan'] == 'DK') {
         $sub_array['status_pemesanan'] = '<span class="label label-info label-white middle">
+                                                proses pengiriman
+                                            </span>';
+    }else{
+        $sub_array['status_pemesanan'] = '<span class="label label-success label-white middle">
                                                 <i class="ace-icon fa fa-check-square bigger-120"></i>
                                                 barang sudah diterima
                                             </span>';
@@ -55,7 +59,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                 sudah dibayar
                                             </span>';
     }
-    
+
     $data[] = $sub_array;
 }
 

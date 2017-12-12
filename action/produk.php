@@ -29,10 +29,12 @@ if ($id_produk=='') {
 
     // panggil fungsi generate kode
     $id_produk = buat_kode_produk($id_terakhir_tersimpan, $init);
+    $stok = 0;
+    $safety_stock = 0;
 
     // simpan data
-    $sql = "INSERT INTO produk (id_produk, nama_produk, jenis_produk, harga)
-            VALUES ('$id_produk', '$nama_produk', '$jenis_produk', '$harga')";
+    $sql = "INSERT INTO produk (id_produk, nama_produk, jenis_produk, harga, stok, safety_stock)
+            VALUES ('$id_produk', '$nama_produk', '$jenis_produk', '$harga', '$stok', '$safety_stock')";
     if(mysqli_query($conn, $sql)){
         $pesan_berhasil = "Data berhasil disimpan";
     }else{

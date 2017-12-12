@@ -92,9 +92,10 @@
                                 <tr class="">
                                     <th width="7%" class="text-center">No</th>
                                     <th width="15%" class="text-left">ID</th>
-                                    <th width="30%" class="text-left">Nama</th>
-                                    <th width="15%" class="text-left">Satuan</th>
+                                    <th width="20%" class="text-left">Nama</th>
+                                    <th width="10%" class="text-left">Satuan</th>
                                     <th width="15%" class="text-center">Jenis</th>
+                                    <th width="15%" class="text-center">Safety Stock</th>
                                     <th width="20%" class="text-center"></th>
                                 </tr>
                             </thead>
@@ -158,6 +159,7 @@
                             { mData: 'nama_bahan_baku' } ,
                             { mData: 'satuan' },
                             { mData: 'jenis_bahan_baku' },
+                            { mData: 'safety_stock' },
                             { mData: 'action'}
                     ],
                     "aoColumnDefs": [

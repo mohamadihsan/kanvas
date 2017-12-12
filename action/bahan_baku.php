@@ -29,10 +29,11 @@ if ($id_bahan_baku=='') {
 
     // panggil fungsi generate kode
     $id_bahan_baku = buat_kode($id_terakhir_tersimpan, $init);
+    $safety_stock = 0;
 
     // simpan data
-    $sql = "INSERT INTO bahan_baku (id_bahan_baku, nama_bahan_baku, jenis_bahan_baku, satuan)
-            VALUES ('$id_bahan_baku', '$nama_bahan_baku', '$jenis_bahan_baku', '$satuan')";
+    $sql = "INSERT INTO bahan_baku (id_bahan_baku, nama_bahan_baku, jenis_bahan_baku, satuan, safety_stock)
+            VALUES ('$id_bahan_baku', '$nama_bahan_baku', '$jenis_bahan_baku', '$satuan', '$safety_stock')";
     if(mysqli_query($conn, $sql)){
         $pesan_berhasil = "Data berhasil disimpan";
     }else{
