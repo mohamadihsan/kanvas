@@ -45,6 +45,7 @@
                                     <th width="20%" class="text-left">Nama</th>
                                     <th width="15%" class="text-left">Jenis</th>
                                     <th width="15%" class="text-left">Harga</th>
+                                    <th width="15%" class="text-left">Stok</th>
                                 </tr>
                             </thead>
                         </table>
@@ -74,7 +75,8 @@
                             { mData: 'id_produk' },
                             { mData: 'nama_produk' },
                             { mData: 'jenis_produk' },
-                            { mData: 'harga' }
+                            { mData: 'harga' },
+                            { mData: 'stok' }
                     ],
                     "aoColumnDefs": [
                         { sClass: "dt-center", "aTargets": [0,3,4] },

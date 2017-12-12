@@ -33,7 +33,7 @@ if($id_pelanggan==''){
         WHERE id_pelanggan = '$id_pelanggan' AND tanggal_pembayaran IS NULL AND bukti_pembayaran IS NULL
         ORDER BY tanggal_pemesanan DESC";
     }
-}            
+}
 $result = mysqli_query($conn, $sql);
 $data = array();
 $no = 1;
@@ -42,18 +42,25 @@ while ($row = mysqli_fetch_assoc($result)) {
     $sub_array['nomor_faktur']      = $row['nomor_faktur'];
     $sub_array['id_pelanggan']      = $row['id_pelanggan'];
     $sub_array['id_pegawai']        = $row['id_pegawai'];
-    $sub_array['status_pemesanan']  = $row['status_pemesanan'];
+    $sub_array['status_pemesanan']  = strtoupper($row['status_pemesanan']);
     $sub_array['status_pembayaran'] = $row['status_pembayaran'];
     $sub_array['tanggal_pemesanan'] = $row['tanggal_pemesanan'];
     $sub_array['tanggal_pembayaran']= $row['tanggal_pembayaran'];
-	$sub_array['action']	        = ' <button type="button" class="btn btn-warning btn-xs" data-toggle="collapse" data-target=".tampil_detail" onclick="return detail(\''.$row['nomor_faktur'].'\')"><i class="ace-icon fa fa-file-text-o bigger-120"></i> Detail</button>';   
-    $sub_array['faktur']	        = ' <a href="./index.php?id='.$row['nomor_faktur'].'&menu=faktur" type="button" class="btn btn-warning btn-xs"><i class="ace-icon fa fa-file-text-o bigger-120"></i> Detail</a>';
+	  $sub_array['faktur']	        = ' <a href="./index.php?id='.$row['nomor_faktur'].'&menu=faktur" type="button" class="btn btn-warning btn-xs"><i class="ace-icon fa fa-file-text-o bigger-120"></i> Detail</a>';
 
     // ubah tampilan data
     if ($sub_array['status_pemesanan'] == 'SP') {
-        $sub_array['status_pemesanan'] = '<span class="label label-info label-white middle">
+        $sub_array['status_pemesanan'] = '<span class="label label-warning label-white middle">
                                                 sedang diproses
                                             </span>';
+        $sub_array['action']	        = ' <a href="./index.php?menu=pemesanan&faktur='.$row['nomor_faktur'].'" class="btn btn-warning btn-xs"><i class="ace-icon fa fa-file-text-o bigger-120"></i> Detail</a>
+                                          <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#kirim" onclick="return kirim(\''.$row['nomor_faktur'].'\')"><i class="ace-icon fa fa-truck bigger-120"></i> Update</button>';
+    }else if ($sub_array['status_pemesanan'] == 'DK') {
+        $sub_array['status_pemesanan'] = '<span class="label label-info label-white middle">
+                                                proses pengiriman
+                                            </span>';
+        $sub_array['action']	        = ' <a href="./index.php?menu=pemesanan&faktur='.$row['nomor_faktur'].'" class="btn btn-warning btn-xs"><i class="ace-icon fa fa-file-text-o bigger-120"></i> Detail</a>
+                                          <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#terima" onclick="return terima(\''.$row['nomor_faktur'].'\')"><i class="ace-icon fa fa-cube bigger-120"></i> Update</button>';
     }else{
         $sub_array['status_pemesanan'] = '<span class="label label-info label-white middle">
                                                 <i class="ace-icon fa fa-check-square bigger-120"></i>
@@ -80,7 +87,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     if ($sub_array['tanggal_pembayaran'] != NULL) {
         $sub_array['tanggal_pembayaran'] = Tanggal($sub_array['tanggal_pembayaran']);
     }
-    
+
     $data[] = $sub_array;
 }
 
