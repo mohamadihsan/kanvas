@@ -34,8 +34,8 @@
 							<div class="center">
 								<h1>
 									<!-- <i class="ace-icon fa fa-building green"></i> -->
-									<span class="red">PT.Indonesia</span><br/>
-									<span class="white" id="id-text2">Victory Garment</span>
+									<span class="red">PT.Kanvas</span>
+									<span class="white" id="id-text2">Mulia</span>
 								</h1>
 								<!--<h4 class="blue" id="id-company-text">&copy; Company Name</h4>-->
 							</div>
