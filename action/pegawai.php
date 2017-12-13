@@ -16,30 +16,12 @@ if(mysqli_escape_string($conn, trim($_POST['hapus']))=='0'){
 
 if ($id_pegawai=='') {
     // init kode terkahir
-    if ($jabatan == "pemilik") {
-        $init = 10;
-    }else if ($jabatan == "manager") {
-        $init = 20;
-    }else if ($jabatan == "kepala pemasaran") {
-        $init = 30;
-    }else if ($jabatan == "kepala administrasi") {
-        $init = 31;
-    }else if ($jabatan == "kepala produksi") {
-        $init = 32;
-    }else if ($jabatan == "kepala gudang dan pengadaan") {
-        $init = 33;
-    }else if ($jabatan == "staff keuangan") {
-        $init = 40;
-    }else if ($jabatan == "staff kepegawaian") {
-        $init = 41;
-    }else if ($jabatan == "staff gudang") {
-        $init = 42;
-    }
+    $init = 10;
     
     $string = date('ym');
 
     // retrieve ID terakhir yg tersimpan
-    $sql = "SELECT id_pegawai 
+    $sql = "SELECT id_pegawai
             FROM pegawai
             ORDER BY id_pegawai DESC
             LIMIT 1";
@@ -49,11 +31,11 @@ if ($id_pegawai=='') {
         $id_terakhir_tersimpan = $data['id_pegawai'];
     }else{
         $id_terakhir_tersimpan = $init.''.$string.'000';
-    }        
+    }
 
     // panggil fungsi generate kode
     $id_pegawai = buat_kode_pegawai($init, $string, $id_terakhir_tersimpan);
-    
+
     // simpan data
     $sql = "INSERT INTO pegawai (id_pegawai, nama_pegawai, alamat, no_telp, email, jabatan, nama_pengguna, kata_sandi)
             VALUES ('$id_pegawai', '$nama_pegawai', '$alamat', '$no_telp', '$email', '$jabatan', '$nama_pengguna', '$kata_sandi')";
@@ -64,7 +46,7 @@ if ($id_pegawai=='') {
     }
 }else if($id_pegawai!='' AND empty(mysqli_escape_string($conn, trim($_POST['hapus'])))){
     // perbaharui data
-    $sql = "UPDATE pegawai 
+    $sql = "UPDATE pegawai
             SET nama_pegawai='$nama_pegawai', alamat='$alamat', no_telp='$no_telp', email='$email', jabatan='$jabatan', nama_pengguna='$nama_pengguna', kata_sandi='$kata_sandi'
             WHERE id_pegawai='$id_pegawai'";
     if(mysqli_query($conn, $sql)){
