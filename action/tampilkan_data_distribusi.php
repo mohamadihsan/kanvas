@@ -17,14 +17,20 @@ $id_distribusi = trim($id_distribusi);
 
 // sql statement
 if($id_distribusi==''){
-    $sql = "SELECT id_distribusi, nomor_faktur, plat_nomor_kendaraan, tanggal_pengiriman, status_pengiriman
-            FROM distribusi
-            ORDER BY tanggal_pengiriman DESC";
+    $sql = "SELECT d.id_distribusi, d.nomor_faktur, d.plat_nomor_kendaraan, d.tanggal_pengiriman, d.status_pengiriman,
+                  p.nama_pelanggan, p.alamat, p.region
+            FROM distribusi d
+            LEFT JOIN pemesanan_produk pp ON pp.nomor_faktur=d.nomor_faktur
+            LEFT JOIN pelanggan p ON p.id_pelanggan=pp.id_pelanggan
+            ORDER BY d.tanggal_pengiriman DESC";
 }else{
-    $sql = "SELECT id_distribusi, nomor_faktur, plat_nomor_kendaraan, tanggal_pengiriman, status_pengiriman
-    FROM distribusi
-    WHERE id_distribusi = '$id_distribusi'
-    ORDER BY tanggal_pengiriman DESC";
+    $sql = "SELECT d.id_distribusi, d.nomor_faktur, d.plat_nomor_kendaraan, d.tanggal_pengiriman, d.status_pengiriman,
+                  p.nama_pelanggan, p.alamat, p.region
+            FROM distribusi d
+            LEFT JOIN pemesanan_produk pp ON pp.nomor_faktur=d.nomor_faktur
+            LEFT JOIN pelanggan p ON p.id_pelanggan=pp.id_pelanggan
+            WHERE d.id_distribusi = '$id_distribusi'
+            ORDER BY d.tanggal_pengiriman DESC";
 }
 $result = mysqli_query($conn, $sql);
 $data = array();
@@ -36,6 +42,9 @@ while ($row = mysqli_fetch_assoc($result)) {
     $sub_array['plat_nomor_kendaraan']  = $row['plat_nomor_kendaraan'];
     $sub_array['tanggal_pengiriman']    = $row['tanggal_pengiriman'];
     $sub_array['status_pengiriman']     = $row['status_pengiriman'];
+    $sub_array['nama_pelanggan']        = $row['nama_pelanggan'];
+    $sub_array['alamat']                = $row['alamat'];
+    $sub_array['region']     = $row['region'];
     $sub_array['action']	              = ' <a href="./index.php?menu=pemesanan&faktur='.$row['nomor_faktur'].'" class="btn btn-warning btn-xs"><i class="ace-icon fa fa-file-text-o bigger-120"></i> Detail</button>';
 
     // ubah tampilan data
@@ -54,6 +63,10 @@ while ($row = mysqli_fetch_assoc($result)) {
 
     if ($sub_array['tanggal_pengiriman'] != NULL) {
         $sub_array['tanggal_pengiriman'] = Tanggal($sub_array['tanggal_pengiriman']);
+    }
+
+    if ($sub_array['region'] != 'jawa barat' OR $sub_array['plat_nomor_kendaraan'] == NULL) {
+        $sub_array['plat_nomor_kendaraan'] = 'Expedisi';
     }
 
     $data[] = $sub_array;

@@ -42,7 +42,7 @@
                                     <th width="7%" class="text-center">No</th>
                                     <th width="10%" class="text-center">ID distribusi</th>
                                     <th width="10%" class="text-left">Nomor Faktur</th>
-                                    <th width="20%" class="text-left">Kendaraan</th>
+                                    <th width="20%" class="text-left">Kendaraan Pengiriman</th>
                                     <th width="15%" class="text-left">Tanggal Pengiriman</th>
                                     <th width="15%" class="text-left">Status</th>
                                     <th width="10%" class="text-left"></th>
