@@ -34,6 +34,19 @@
 		<!-- gritter notification -->
 		<link rel="stylesheet" href="../assets/css/jquery.gritter.min.css" />
 
+		<!-- chart -->
+		<script src="../assets/chart/Chart.bundle.js"></script>
+		<script src="../assets/chart/utils.js"></script>
+
+		<style>
+	    canvas{
+	        -moz-user-select: none;
+	        -webkit-user-select: none;
+	        -ms-user-select: none;
+	    }
+
+	    </style>
+		
 		<?php
 		function Tanggal($tanggal) {
 			$BulanIndo = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
@@ -73,7 +86,7 @@
 				<div class="navbar-header pull-left">
 					<a href="./" class="navbar-brand">
 						<small>
-							<i class="fa fa-file-text-o"></i>
+							<!-- <i class="fa fa-home"></i> -->
 							PT.Kanvas Mulia
 						</small>
 					</a>

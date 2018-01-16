@@ -1,8 +1,8 @@
 <div class="footer">
 				<div class="footer-inner">
-					<div class="footer-content">
-						<span class="bigger-120">
-							<span class="blue bolder">PT.Kanvas</span>
+					<div class="footer-content" style="background-color:#2679B5">
+						<span class="bigger-120 white">
+							<span class="white bolder">PT.Kanvas</span>
 							Mulia &copy; 2017-2018
 						</span>
 					</div>

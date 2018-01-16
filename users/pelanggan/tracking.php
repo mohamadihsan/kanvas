@@ -12,9 +12,9 @@
 
         <div class="page-content">
 
-            <div class="page-header">
+            <div class="page-header" style="background-color:#5090C1">
                 <h1>
-                    <b>PT.Kanvas Mulia</b>
+                    <b class="white">PT.Kanvas Mulia</b>
                     <small>
                         <i class="ace-icon fa fa-angle-double-right"></i>
                         Tracking
@@ -22,40 +22,40 @@
                 </h1>
             </div><!-- /.page-header -->
 
-						<div class="row">
-							<div class="col-xs-12">
-								<!-- PAGE CONTENT BEGINS -->
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- PAGE CONTENT BEGINS -->
 
-								<!-- #section:pages/error -->
-								<div class="error-container center">
-									<div class="well">
-										<h1 class="grey lighter smaller">
-											<span class="blue bigger-125">
-												<i class="ace-icon fa fa-search"></i>
-												Tracking
-											</span>
-											Barang
-										</h1>
+					<!-- #section:pages/error -->
+					<div class="error-container center">
+						<div class="well">
+							<h1 class="grey lighter smaller">
+								<span class="blue bigger-125">
+									<i class="ace-icon fa fa-search"></i>
+									Tracking
+								</span>
+								Barang
+							</h1>
 
-										<hr />
-										<h3 class="lighter smaller">Cari barang yang anda pesan di PT.Kanvas Mulia!</h3>
+							<hr />
+							<h3 class="lighter smaller">Cari barang yang anda pesan di PT.Kanvas Mulia!</h3>
 
-										<div class="center">
-											<form class="form-search" method="post" action="">
-												<span class="input-icon align-middle">
-													<i class="ace-icon fa fa-search"></i>
+							<div class="center">
+								<form class="form-search" method="post" action="">
+									<span class="input-icon align-middle">
+										<i class="ace-icon fa fa-search"></i>
 
-													<input type="text" class="search-query" value="<?php if(isset($_POST['faktur'])) echo $_POST['faktur'] ?>" name="faktur" size="80px" placeholder="Masukkan Nomor Faktur Pembelian..." required />
-												</span>
-												<button class="btn btn-sm btn-success" type="submit">Cari</button>
-											</form>
+										<input type="text" class="search-query" value="<?php if(isset($_POST['faktur'])) echo $_POST['faktur'] ?>" name="faktur" size="80px" placeholder="Masukkan Nomor Faktur Pembelian..." required />
+									</span>
+									<button class="btn btn-sm btn-success" type="submit">Cari</button>
+								</form>
 
-											<div class="space"></div>
+								<div class="space"></div>
 
-										</div>
+							</div>
 
-										<hr />
-										<div class="space"></div>
+							<hr />
+							<div class="space"></div>
 
                     <?php
                     if (isset($_POST['faktur'])) {
@@ -148,14 +148,14 @@
                     }
                     ?>
 
-									</div>
-								</div>
+						</div>
+					</div>
 
-								<!-- /section:pages/error -->
+					<!-- /section:pages/error -->
 
-								<!-- PAGE CONTENT ENDS -->
-							</div><!-- /.col -->
-						</div><!-- /.row -->
-					</div><!-- /.page-content -->
-				</div>
-			</div><!-- /.main-content -->
+					<!-- PAGE CONTENT ENDS -->
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.page-content -->
+	</div>
+</div><!-- /.main-content -->

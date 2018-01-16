@@ -33,7 +33,7 @@
 						<div class="login-container">
 							<div class="center">
 								<h1>
-									<i class="ace-icon fa fa-file-text-o green"></i>
+									<i class="ace-icon fa fa-home white"></i>
 									<span class="red">PT.Kanvas</span>
 									<span class="white" id="id-text2">Mulia</span>
 								</h1>
@@ -46,10 +46,10 @@
 								<div id="login-box" class="login-box visible widget-box no-border">
 									<div class="widget-body">
 										<div class="widget-main">
-											<h4 class="header green lighter bigger">
-												<i class="ace-icon fa fa-lock green"></i>
+											<h2 class="header blue lighter bigger">
+												<i class="ace-icon fa fa-lock blue"></i>
 												Login
-											</h4>
+											</h2>
 
 											<div class="space-6"></div>
 
@@ -76,7 +76,7 @@
 
 													<div class="clearfix">
 
-														<button type="submit" class="width-35 pull-right btn btn-sm btn-success">
+														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
 															<i class="ace-icon fa fa-key"></i>
 															<span class="bigger-110">Login</span>
 														</button>
@@ -88,7 +88,7 @@
 
 										</div><!-- /.widget-main -->
 
-										<div class="toolbar clearfix" style="background-color:green">
+										<div class="toolbar clearfix" style="">
 											<div>
 												<a href="#" data-target="#forgot-box" class="forgot-password-link">
 													<i class="ace-icon fa fa-arrow-left"></i>
