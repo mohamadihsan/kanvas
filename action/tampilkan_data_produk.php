@@ -40,7 +40,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     $sub_array['safety_stock']          = $row['safety_stock'];
     $sub_array['gambar_produk'] = '<img src="../assets/images/'.$row['gambar_produk'].'" alt="produk" class="img-responsive" width="80px" height="80px" >';
     $sub_array['nama_file_gambar'] = $row['gambar_produk'];
-	  $sub_array['action']	    = ' <button type="button" class="btn btn-warning btn-xs" data-toggle="collapse" data-target=".tampil" onclick="return ubah(\''.$row['id_produk'].'\',\''.$row['nama_produk'].'\',\''.$row['jenis_produk'].'\',\''.$row['harga'].'\')"><i class="ace-icon fa fa-pencil-square-o bigger-120"></i> Ubah</button>
+    $sub_array['ubah_gambar'] = '  <a href="" title="Ubah Gambar" data-toggle="modal" data-target="#ubahGambar" onclick="return ubahGambar(\''.$row['id_produk'].'\',\''.$row['gambar_produk'].'\')"><i class="ace-icon fa fa-picture-o bigger-120"></i></a>';
+	$sub_array['action']	    = ' <button type="button" class="btn btn-warning btn-xs" data-toggle="collapse" data-target=".tampil" onclick="return ubah(\''.$row['id_produk'].'\',\''.$row['nama_produk'].'\',\''.$row['jenis_produk'].'\',\''.$row['harga'].'\')"><i class="ace-icon fa fa-pencil-square-o bigger-120"></i> Ubah</button>
                                     <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#hapus" onclick="return hapus(\''.$row['id_produk'].'\')"><i class="ace-icon fa fa-trash-o bigger-120"></i> Hapus</button>';
     $sub_array['komposisi']	    = ' <a class="btn btn-warning btn-xs" href="./index.php?id='.$row['id_produk'].'&menu=detail_komposisi"><i class="ace-icon fa fa-file-text-o bigger-120"></i> Komposisi</a>
                                     <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#hapus" onclick="return hapus(\''.$row['id_produk'].'\')"><i class="ace-icon fa fa-trash-o bigger-120"></i> Hapus</button>';

@@ -84,6 +84,7 @@
                             <thead>
                                 <tr class="">
                                     <th width="7%" class="text-center">No</th>
+                                    <th width="1%" class="text-center"></th>
                                     <th width="10%" class="text-center">Gambar</th>
                                     <th width="10%" class="text-left">ID</th>
                                     <th width="15%" class="text-left">Nama</th>
@@ -125,6 +126,31 @@
     </div>
 </div>
 
+<!-- Modal Ubah Gambar -->
+<div class="modal fade" id="ubahGambar" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><i class="fa fa-picture-o"></i> Ubah Gambar Produk</h4>
+            </div>
+            <form method="post" action="../action/gambar_produk.php" class="myform">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="hidden" name="id_produk" readonly>
+                        <input type="hidden" name="nama_file" value="" class="form-control">
+                        <label for="">Pilih Gambar</label>
+                        <input type="file" name="gambar_produk" value="" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script>
     function ubah(id_produk, nama_produk, jenis_produk, harga){
         $('.well input[name=id_produk]').val(id_produk);
@@ -135,6 +161,11 @@
 
     function hapus(id_produk){
         $('.modal-body input[name=id_produk]').val(id_produk);
+    }
+
+    function ubahGambar(id_produk, gambar_produk){
+        $('.modal-body input[name=id_produk]').val(id_produk);
+        $('.modal-body input[name=nama_file]').val(gambar_produk);
     }
 
     // LOADING SCREEN WHILE PROCESS SAVING/UPDATE/DELETE DATA
@@ -150,6 +181,7 @@
                     //"order": [[ 4, "desc" ]],
                      "aoColumns": [
                             { mData: 'no' } ,
+                            { mData: 'ubah_gambar' } ,
                             { mData: 'gambar_produk' } ,
                             { mData: 'id_produk' } ,
                             { mData: 'nama_produk' } ,
@@ -186,6 +218,7 @@
                     $("#result").html(data);
                     $("#loading").hide();
                     $("#hapus").modal('hide');
+                    $("#ubahGambar").modal('hide');
                     $('#mytable').DataTable().ajax.reload();
             },
                 error: function(jqXHR, textStatus, errorThrown){
