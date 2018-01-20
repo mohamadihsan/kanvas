@@ -63,6 +63,10 @@ switch ($jabatan) {
 					include_once '../users/manager-pembelian/bahan_baku.php';
 					break;
 
+				case 'form-pemesanan':
+					include_once '../users/manager-pembelian/form_pemesanan.php';
+					break;
+
 				case 'produk':
 					include_once '../users/manager-pembelian/produk.php';
 					break;
@@ -118,6 +122,10 @@ switch ($jabatan) {
 
 				case 'pelanggan':
 					include_once '../users/manager-pemasaran/pelanggan.php';
+					break;
+
+				case 'form-pemesanan':
+					include_once '../users/manager-pemasaran/form_pemesanan.php';
 					break;
 
 				case 'produk':

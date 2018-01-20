@@ -29,7 +29,7 @@
                     <?php
                     if (isset($_GET['faktur'])) { ?>
 
-                      <div class="well">
+                        <div class="well">
 
                           <?php
                           // retrieve data dari API
@@ -183,38 +183,39 @@
                       <?php
                     }else{
                     ?>
+                        <a href="index.php?menu=form-pemesanan" class="btn btn-sm btn-primary"><i class="ace-icon fa fa-plus bigger-110"></i> Order</a>
 
-                      <div class="clearfix">
-                          <div class="pull-right tableTools-container"></div>
-                      </div>
-                      <div class="table-header">
-                          Daftar data "Pemesanan Bahan Baku"
-                      </div>
-                      <!-- div.table-responsive -->
+                        <div class="clearfix">
+                            <div class="pull-right tableTools-container"></div>
+                        </div>
+                        <div class="table-header">
+                            Daftar data "Pemesanan Bahan Baku"
+                        </div>
+                        <!-- div.table-responsive -->
 
-                      <!-- div.dataTables_borderWrap -->
-                      <div class="table table-responsive">
-                          <table id="mytable" class="display" width="100%" cellspacing="0">
-                              <thead>
-                                  <tr class="">
-                                      <th width="5%" class="text-center">No</th>
-                                      <th width="15%" class="text-left">Nomor Faktur</th>
-                                      <th width="10%" class="text-left">Supplier</th>
-                                      <th width="10%" class="text-left">Pegawai</th>
-                                      <th width="12%" class="text-center">Status Pemesanan</th>
-                                      <th width="15%" class="text-center">Tanggal</th>
-                                      <th width="12%" class="text-center"></th>
-                                  </tr>
-                              </thead>
-                          </table>
-                      </div>
+                        <!-- div.dataTables_borderWrap -->
+                        <div class="table table-responsive">
+                            <table id="mytable" class="display" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr class="">
+                                        <th width="5%" class="text-center">No</th>
+                                        <th width="15%" class="text-left">Nomor Faktur</th>
+                                        <th width="10%" class="text-left">Supplier</th>
+                                        <th width="10%" class="text-left">Pegawai</th>
+                                        <th width="12%" class="text-center">Status Pemesanan</th>
+                                        <th width="15%" class="text-center">Tanggal</th>
+                                        <th width="12%" class="text-center"></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
 
-                    <?php
-                  } ?>
+                        <?php
+                    } ?>
 
-                  <!-- loading -->
-                  <center><div id="loading"></div></center>
-                  <div id="result"></div>
+                    <!-- loading -->
+                    <center><div id="loading"></div></center>
+                    <div id="result"></div>
 
                     <!-- PAGE CONTENT ENDS -->
                 </div><!-- /.col -->

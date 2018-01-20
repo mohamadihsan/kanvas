@@ -182,6 +182,7 @@
                       <?php
                     }else{
                     ?>
+                    <a href="index.php?menu=form-pemesanan" class="btn btn-sm btn-primary"><i class="ace-icon fa fa-plus bigger-110"></i> Order</a>
 
                         <div class="clearfix">
                             <div class="pull-right tableTools-container"></div>
