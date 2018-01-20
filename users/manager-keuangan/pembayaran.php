@@ -224,7 +224,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title"><i class="fa fa-check-square"></i> Konfirmasi Penerimaan</h4>
             </div>
-            <form method="post" action="../action/pemesanan_produk.php" class="myform">
+            <form method="post" action="../action/pembayaran.php" class="myform">
                 <div class="modal-body">
                     <input type="hidden" name="hapus" value="3" readonly>
                     <input type="hidden" name="nomor_faktur" readonly>
@@ -294,7 +294,7 @@
                     $("#result").html(data);
                     $("#loading").hide();
                     $("#terima").modal('hide');
-                    $("#kirim").modal('hide');
+                    $("#konfirmasi").modal('hide');
                     $('#mytable').DataTable().ajax.reload();
             },
                 error: function(jqXHR, textStatus, errorThrown){
