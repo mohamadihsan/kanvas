@@ -225,7 +225,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title"><i class="fa fa-check-square"></i> Konfirmasi Pengiriman</h4>
             </div>
-            <form method="post" action="../action/pemesanan_produk.php" class="myform">
+            <form method="post" action="../action/distribusi.php" class="myform">
                 <div class="modal-body">
                     <input type="hidden" name="hapus" value="1" readonly>
                     <input type="hidden" name="nomor_faktur" readonly>

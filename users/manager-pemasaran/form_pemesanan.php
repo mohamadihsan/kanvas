@@ -26,7 +26,7 @@
                 <div class="col-xs-12">
                     <!-- PAGE CONTENT BEGINS -->
                     <button type="button" name="add" id="add" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i> Tambah Item</button>
-                    <form action="../action/order_bahan_baku.php" method="post" class="myform">
+                    <form action="../action/order_produk.php" method="post" class="myform">
 
                         <!-- hidden status hapus false -->
                         <input type="hidden" name="hapus" value="0" class="form-control" placeholder="" readonly>
