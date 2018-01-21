@@ -82,7 +82,7 @@ if (isset($_GET['periode'])) {
 <script>
 $(document).ready(function(){
     $.ajax({
-        url: "http://127.0.0.1/kanvas/action/tampilkan_data_grafik_pembelian_bahan_baku.php<?= $param ?>",
+        url: "http://localhost/kanvas/action/tampilkan_data_grafik_pembelian_bahan_baku.php<?= $param ?>",
         method: "GET",
         success: function(data) {
             console.log(data);

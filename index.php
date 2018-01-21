@@ -2,8 +2,8 @@
 
 $menu       = isset($_GET['menu']) ? $_GET['menu']: '';
 $sub        = isset($_GET['sub']) ? $_GET['sub']: '';
-$base_url   = 'http://127.0.0.1/kanvas/';
-$url_api    = 'http://127.0.0.1/kanvas/action/';
+$base_url   = 'http://localhost/kanvas/';
+$url_api    = 'http://localhost/kanvas/action/';
 
 
   // load _header
