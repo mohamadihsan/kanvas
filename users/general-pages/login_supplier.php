@@ -47,7 +47,7 @@
 									<div class="widget-body">
 										<div class="widget-main">
 											<h4 class="header green lighter bigger">
-												<i class="ace-icon fa fa-lock green"></i>
+												<i class="ace-icon fa fa-lock blue"></i>
 												Login
 											</h4>
 
@@ -76,7 +76,7 @@
 
 													<div class="clearfix">
 
-														<button type="submit" class="width-35 pull-right btn btn-sm btn-success">
+														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
 															<i class="ace-icon fa fa-key"></i>
 															<span class="bigger-110">Login</span>
 														</button>
@@ -99,7 +99,7 @@
 
 										</div><!-- /.widget-main -->
 
-										<div class="toolbar clearfix" style="background-color:green">
+										<div class="toolbar clearfix">
 											<div>
 												<a href="#" data-target="#forgot-box" class="forgot-password-link">
 													<i class="ace-icon fa fa-arrow-left"></i>

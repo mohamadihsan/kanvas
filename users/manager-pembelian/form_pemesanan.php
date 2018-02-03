@@ -25,74 +25,104 @@
             <div class="row">
                 <div class="col-xs-12">
                     <!-- PAGE CONTENT BEGINS -->
-                    <button type="button" name="add" id="add" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i> Tambah Item</button>
-                    <form action="../action/order_bahan_baku.php" method="post" class="myform">
+                    <?php
+                    if (isset($_GET['id_supplier'])) {
+                        ?>
+                        <button type="button" name="add" id="add" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i> Tambah Item</button>
+                        <form action="../action/order_bahan_baku.php" method="post" class="myform">
 
-                        <!-- hidden status hapus false -->
-                        <input type="hidden" name="hapus" value="0" class="form-control" placeholder="" readonly>
+                            <!-- hidden status hapus false -->
+                            <input type="hidden" name="hapus" value="0" class="form-control" placeholder="" readonly>
 
-                        <table class="table table-renponsive">
-                            <h4><caption>Masukkan Data Order:</caption></h4>
-                            <tr>
-                                <th width="20%">Nama Supplier :</th>
-                                <th colspan="2">
-                                    <select name="id_supplier" class="form-control select2" required>
-                                        <?php
-                                        // retrieve data dari API
-                                        $file = file_get_contents($url_api."tampilkan_data_supplier.php");
-                                        $json = json_decode($file, true);
-                                        $i=0;
-                                        while ($i < count($json['data'])) {
-                                            $id_supplier[$i] = $json['data'][$i]['id_supplier'];
-                                            $nama_supplier[$i] = $json['data'][$i]['nama_supplier'];
-                                            ?>
-                                            <option value="<?= $id_supplier[$i] ?>"> <?= $nama_supplier[$i] ?></option>
-                                            <?php
-                                            $i++;
-                                        }
-                                        ?>
-                                    </select>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th width="20%">Barang</th>
-                                <th width="60%">Qty</th>
-                                <th width="5%"></th>
-                            </tr>
-                        </table>
+                            <table class="table table-renponsive">
+                                <h4><caption>Masukkan Data Order:</caption></h4>
+                                <tr>
+                                    <th width="20%">Supplier :</th>
+                                    <th colspan="2">
+                                        <input type="text" name="id_supplier" value="<?= $_GET['id_supplier'] ?>" class="form-control" readonly>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th width="20%">Barang</th>
+                                    <th width="60%">Qty</th>
+                                    <th width="5%"></th>
+                                </tr>
+                            </table>
 
-                        <div class="modal fade" id="konfirmasi_checkout" role="dialog">
-                            <div class="modal-dialog modal-sm">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-red">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title"><i class="fa fa-question"></i> Konfirmasi Pesanan</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Apakah anda yakin?</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-shopping-cart"></i> Checkout</button>
+                            <div class="modal fade" id="konfirmasi_checkout" role="dialog">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-red">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title"><i class="fa fa-question"></i> Konfirmasi Pesanan</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Apakah anda yakin?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-shopping-cart"></i> Checkout</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <table class="table table-renponsive" id="dynamic_field">
-                            <tr>
-                                <td colspan="3">
-                                    <div class="btn-group">
-                                        <a data-toggle="modal" data-target="#konfirmasi_checkout" class="btn btn-sm btn-success"><i class="ace-icon fa fa-shopping-cart bigger-120"></i> Checkout</a>
-                                        <a data-toggle="modal" data-target="#batalkan" class="btn btn-sm btn-danger"><i class="ace-icon fa fa-refresh bigger-120"></i> Batal</a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
+                            <table class="table table-renponsive" id="dynamic_field">
+                                <tr>
+                                    <td colspan="3">
+                                        <div class="btn-group">
+                                            <a data-toggle="modal" data-target="#konfirmasi_checkout" class="btn btn-sm btn-success"><i class="ace-icon fa fa-shopping-cart bigger-120"></i> Checkout</a>
+                                            <a data-toggle="modal" data-target="#batalkan" class="btn btn-sm btn-danger"><i class="ace-icon fa fa-refresh bigger-120"></i> Batal</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
 
-                    <!-- loading -->
-                    <center><div id="loading"></div></center>
-                    <div id="result"></div>
+                        <!-- loading -->
+                        <center><div id="loading"></div></center>
+                        <div id="result"></div>
+                        <?php
+                    }else{
+                        ?>
+                        <form action="index.php?menu=form-pemesanan" method="GET" class="">
+                            <table class="table table-renponsive">
+                                <h4><caption>Pilih Supplier:</caption></h4>
+                                <input type="text" name="menu" value="form-pemesanan" hidden>
+                                <tr>
+                                    <th width="20%">Nama Supplier :</th>
+                                    <th colspan="2">
+                                        <select name="id_supplier" class="form-control select2" required>
+                                            <?php
+                                            // retrieve data dari API
+                                            $file = file_get_contents($url_api."tampilkan_data_supplier.php");
+                                            $json = json_decode($file, true);
+                                            $i=0;
+                                            while ($i < count($json['data'])) {
+                                                $id_supplier[$i] = $json['data'][$i]['id_supplier'];
+                                                $nama_supplier[$i] = $json['data'][$i]['nama_supplier'];
+                                                ?>
+                                                <option value="<?= $id_supplier[$i] ?>"> <?= $nama_supplier[$i] ?></option>
+                                                <?php
+                                                $i++;
+                                            }
+                                            ?>
+                                        </select>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <div class="btn-group">
+                                            <button type="submit" name="" class="btn btn-primary btn-sm">Lanjutkan</button>
+                                        </div>
+                                        <a href="index.php?menu=daftar-harga">( Cek harga barang termurah )</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+
+                        <?php
+                    }
+                    ?>
 
                     <!-- PAGE CONTENT ENDS -->
                 </div><!-- /.col -->
@@ -135,7 +165,7 @@
                     '<select name="id_bahan_baku[]" class="form-control select2" required>' +
                         <?php
                         // retrieve data dari API
-                        $file = file_get_contents($url_api."tampilkan_data_bahan_baku.php");
+                        $file = file_get_contents($url_api."tampilkan_data_barang_supplier.php?id_supplier=".$_GET['id_supplier']);
                         $json = json_decode($file, true);
                         $i=0;
                         while ($i < count($json['data'])) {

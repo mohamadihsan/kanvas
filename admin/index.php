@@ -67,6 +67,10 @@ switch ($jabatan) {
 					include_once '../users/manager-pembelian/form_pemesanan.php';
 					break;
 
+				case 'daftar-harga':
+					include_once '../users/manager-pembelian/daftar_harga_bahan_baku.php';
+					break;
+
 				case 'produk':
 					include_once '../users/manager-pembelian/produk.php';
 					break;
