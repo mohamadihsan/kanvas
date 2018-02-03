@@ -15,6 +15,58 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <!-- PAGE CONTENT BEGINS -->
+                    <caption><h5><b>Monitoring Produk </b></h5></caption>
+                    <div style="width:100%;">
+                        <table class="table table-responsive table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Produk</th>
+                                    <th class="text-center" width="15%">Stock</th>
+                                    <th class="text-center" width="15%">Safety Stock</th>
+                                    <th width="20%" class="text-center">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                // retrieve data dari API
+                                $file = file_get_contents($url_api."tampilkan_data_produk.php");
+                                $json = json_decode($file, true);
+                                $i=0;
+                                while ($i < count($json['data'])) {
+                                    $nama_produk[$i] = $json['data'][$i]['id_produk'].' - '.$json['data'][$i]['nama_produk'];
+                                    $stok[$i] = $json['data'][$i]['stok'];
+                                    $safety_stock[$i] = $json['data'][$i]['safety_stock'];
+
+                                    if ($stok[$i] < $safety_stock[$i]) {
+                                        $status[$i] = '<span class="label label-danger label-white middle">
+                                            <i class="ace-icon fa fa-close bigger-120"></i>
+                                            tidak aman
+                                        </span>';
+                                    }else{
+                                        $status[$i] = '<span class="label label-success label-white middle">
+                                            <i class="ace-icon fa fa-check bigger-120"></i>
+                                            aman
+                                        </span>';
+                                    }
+                                    ?>
+                                    <tr>
+                                        <td><?= $nama_produk[$i] ?></td>
+                                        <td><?= $stok[$i] ?></td>
+                                        <td><?= $safety_stock[$i] ?></td>
+                                        <td class="text-center">
+                                            <?= $status[$i] ?>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                    $i++;
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
                     <h5><b>Filter :</b></h5>
                     <form action="" method="get">
                         <select name="id" class="form-control select2" required>

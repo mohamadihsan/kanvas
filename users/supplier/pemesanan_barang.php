@@ -11,10 +11,10 @@
         </div>
 
         <div class="page-content">
-            
+
             <div class="page-header">
                 <h1>
-                    Pemesanan Barang 
+                    Pemesanan Barang
                     <small>
                         <i class="ace-icon fa fa-angle-double-right"></i>
                         Pengolahan Data
@@ -30,7 +30,7 @@
                         <div class="well">
                         Detail Pemesanan
                         <button data-toggle="collapse" data-target=".tampil_detail" class="btn btn-sm"><i class="ace-icon fa fa-close bigger-110"></i> Tutup</button>
-                    
+
                         </div>
                     </div>
 
@@ -61,7 +61,7 @@
                     <!-- loading -->
                     <center><div id="loading"></div></center>
                     <div id="result"></div>
-                    
+
                     <!-- PAGE CONTENT ENDS -->
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -79,14 +79,13 @@
             </div>
             <form method="post" action="../action/pemesanan_bahan_baku.php" class="myform">
                 <div class="modal-body">
-                    <input type="hidden" name="hapus" value="1" readonly>
                     <input type="hidden" name="nomor_faktur" readonly>
                     <p>Konfirmasi pemesanan barang telah diterima dan siap dikirim?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-check-square"></i> Ya</button>
                 </div>
-            </form>    
+            </form>
         </div>
     </div>
 </div>
@@ -99,8 +98,8 @@
     function terima(nomor_faktur){
         $('.modal-body input[name=nomor_faktur]').val(nomor_faktur);
     }
-    
-    // LOADING SCREEN WHILE PROCESS SAVING/UPDATE/DELETE DATA 
+
+    // LOADING SCREEN WHILE PROCESS SAVING/UPDATE/DELETE DATA
     $(document).ready(function(){
 
         $('#mytable').DataTable({
@@ -122,9 +121,34 @@
         });
 
     });
+
+    //Callback handler for form submit event
+    $(".myform").submit(function(e)
+    {
+
+    var formObj = $(this);
+    var formURL = formObj.attr("action");
+    var formData = new FormData(this);
+    $.ajax({
+        url: formURL,
+        type: 'POST',
+        data:  formData,
+        contentType: false,
+        cache: false,
+        processData:false,
+        beforeSend: function (){
+                   $("#loading").show(1000).html("<img src='../assets/images/loading.gif' height='100'>");
+                   },
+        success: function(data, textStatus, jqXHR){
+                $("#result").html(data);
+                $("#loading").hide();
+                $("#terima").modal('hide');
+                $('#mytable').DataTable().ajax.reload();
+        },
+            error: function(jqXHR, textStatus, errorThrown){
+     }
+    });
+        e.preventDefault(); //Prevent Default action.
+        e.unbind();
+    });
 </script>
-
-
-
-
-

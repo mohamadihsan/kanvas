@@ -146,7 +146,7 @@
                                                                       <a href="#"><?= $nama_produk ?></a>
                                                                   </td>
                                                                   <td class="hidden-xs">
-                                                                      <?= $jumlah_pemesanan ?> buah (<?= ceil($jumlah_pemesanan/10) ?> bal)
+                                                                      <?= $jumlah_pemesanan ?>
                                                                   </td>
                                                                   <td class="hidden-480">
                                                                       <?= 'Rp.'.Rupiah($harga_produk) ?></td>

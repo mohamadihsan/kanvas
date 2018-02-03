@@ -65,7 +65,7 @@
                                     </tr>
                                     <tr>
                                         <td width="15%">Tanggal</td>
-                                        <td><input type="date" name="tanggal" value="" class="form-control" placeholder=""></td>
+                                        <td><input type="date" name="tanggal" value="<?= date('Y-m-d') ?>" class="form-control" placeholder=""></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">

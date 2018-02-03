@@ -44,7 +44,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     }else{
         $sub_array['status_pemesanan'] = '<span class="label label-success label-white middle">
                                                 <i class="ace-icon fa fa-check-square bigger-120"></i>
-                                                barang sudah diterima
+                                                barang sudah dikirim
                                             </span>';
     }
 

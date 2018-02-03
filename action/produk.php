@@ -7,7 +7,8 @@ $id_produk          = strtoupper(mysqli_escape_string($conn, trim($_POST['id_pro
 if(mysqli_escape_string($conn, trim($_POST['hapus']))=='0'){
     $nama_produk    = ucwords(mysqli_escape_string($conn, trim($_POST['nama_produk'])));
     $jenis_produk   = ucwords(mysqli_escape_string($conn, trim($_POST['jenis_produk'])));
-    $harga          = strtolower(mysqli_escape_string($conn, trim($_POST['harga'])));
+    $harga          = mysqli_escape_string($conn, trim($_POST['harga']));
+    $stok          = mysqli_escape_string($conn, trim($_POST['stok']));
 }
 
 if ($id_produk=='') {
@@ -29,7 +30,6 @@ if ($id_produk=='') {
 
     // panggil fungsi generate kode
     $id_produk = buat_kode_produk($id_terakhir_tersimpan, $init);
-    $stok = 0;
     $safety_stock = 0;
 
     // simpan data
@@ -43,7 +43,7 @@ if ($id_produk=='') {
 }else if($id_produk!='' AND empty(mysqli_escape_string($conn, trim($_POST['hapus'])))){
     // perbaharui data
     $sql = "UPDATE produk
-            SET nama_produk='$nama_produk', jenis_produk='$jenis_produk', harga='$harga'
+            SET nama_produk='$nama_produk', jenis_produk='$jenis_produk', harga='$harga', stok='$stok'
             WHERE id_produk='$id_produk'";
     if(mysqli_query($conn, $sql)){
         $pesan_berhasil = "Data berhasil diperbaharui";

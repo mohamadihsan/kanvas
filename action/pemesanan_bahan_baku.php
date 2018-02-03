@@ -3,17 +3,16 @@
 require_once '../config/connection.php';
 
 $nomor_faktur      = mysqli_escape_string($conn, trim($_POST['nomor_faktur']));
-$tanggal_pembayaran      = mysqli_escape_string($conn, trim($_POST['tanggal_pembayaran']));
-$status_pembayaran = '1';
+$status_pemesanan = 's';
 
 // perbaharui data
-$sql = "UPDATE pemesanan_produk
-        SET status_pembayaran='$status_pembayaran', tanggal_pembayaran='$tanggal_pembayaran'
+$sql = "UPDATE pemesanan_bahan_baku
+        SET status_pemesanan='$status_pemesanan'
         WHERE nomor_faktur='$nomor_faktur'";
 if(mysqli_query($conn, $sql)){
-    $pesan_berhasil = "Pembayaran berhasil diterima";
+    $pesan_berhasil = "Data berhasil diperbaharui";
 }else{
-    $pesan_gagal = "Pembayaran gagal diterima";
+    $pesan_gagal = "Data gagal diperbaharui";
 }
 
 if (isset($pesan_berhasil)) {

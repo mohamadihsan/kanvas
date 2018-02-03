@@ -46,8 +46,11 @@
 	    }
 
 	    </style>
-		
+
 		<?php
+		// set time region
+		date_default_timezone_set("Asia/Bangkok");
+
 		function Tanggal($tanggal) {
 			$BulanIndo = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
 			$tahun = substr($tanggal, 0, 4);

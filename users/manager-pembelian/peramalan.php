@@ -58,16 +58,16 @@
                                         <th>: <?= $json['data_produk'][0]['jenis_produk'] ?></th>
                                     </tr>
                                     <tr>
-                                        <th>KEMASAN</th>
-                                        <th>: <?= $json['data_produk'][0]['kemasan'] ?></th>
-                                    </tr>
-                                    <tr>
                                         <th>HARGA PRODUK</th>
                                         <th>: <?= "Rp".Rupiah($json['data_produk'][0]['harga']) ?></th>
                                     </tr>
                                     <tr>
                                         <th>STOK SAAT INI</th>
-                                        <th>: <?= $json['data_produk'][0]['stok_produk'] ?></th>
+                                        <th>: <?= $json['data_produk'][0]['stok'] ?></th>
+                                    </tr>
+                                    <tr>
+                                        <th>SAFETY STOCK</th>
+                                        <th>: <?= $json['data_produk'][0]['safety_stock'] ?></th>
                                     </tr>
                                     <tr>
                                         <th colspan="2">PERAMALAN KEBUTUHAN BAHAN BAKU YANG HARUS DISEDIAKAN UNTUK PERIODE <?= $json['data_produk'][0]['periode'] ?> :</th>

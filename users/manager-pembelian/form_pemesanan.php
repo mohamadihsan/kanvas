@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <!-- PAGE CONTENT BEGINS -->
-
+                    <button type="button" name="add" id="add" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i> Tambah Item</button>
                     <form action="../action/order_bahan_baku.php" method="post" class="myform">
 
                         <!-- hidden status hapus false -->
@@ -34,40 +34,56 @@
                         <table class="table table-renponsive">
                             <h4><caption>Masukkan Data Order:</caption></h4>
                             <tr>
-                                <th width="20%">Bahan Baku</th>
-                                <th width="60%">Qty</th>
-                                <th width="5%"></th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <select name="id_bahan_baku" class="form-control select2" required>
-                                        <option>Pilih Barang</option>
+                                <th width="20%">Nama Supplier :</th>
+                                <th colspan="2">
+                                    <select name="id_supplier" class="form-control select2" required>
                                         <?php
                                         // retrieve data dari API
-                                        $file = file_get_contents($url_api."tampilkan_data_bahan_baku.php");
+                                        $file = file_get_contents($url_api."tampilkan_data_supplier.php");
                                         $json = json_decode($file, true);
                                         $i=0;
                                         while ($i < count($json['data'])) {
-                                            $id_bahan_baku[$i] = $json['data'][$i]['id_bahan_baku'];
-                                            $nama_bahan_baku[$i] = $json['data'][$i]['id_bahan_baku'].' - '.$json['data'][$i]['nama_bahan_baku'];
+                                            $id_supplier[$i] = $json['data'][$i]['id_supplier'];
+                                            $nama_supplier[$i] = $json['data'][$i]['nama_supplier'];
                                             ?>
-                                            <option value="<?= $id_bahan_baku[$i] ?>" <?php if(isset($_GET['id'])){ if($_GET['id']==$id_bahan_baku[$i]) echo 'selected'; } ?>> <?= $nama_bahan_baku[$i] ?></option>
+                                            <option value="<?= $id_supplier[$i] ?>"> <?= $nama_supplier[$i] ?></option>
                                             <?php
                                             $i++;
                                         }
                                         ?>
                                     </select>
-                                </td>
-                                <td>
-                                    <input type="text" name="jumlah_pemesanan" id="jumlah_pemesanan" value="" class="form-control" min="1" required>
-                                </td>
-                                <td><i class="fa fa-trash fa red" title="hapus"></i></td>
+                                </th>
                             </tr>
+                            <tr>
+                                <th width="20%">Barang</th>
+                                <th width="60%">Qty</th>
+                                <th width="5%"></th>
+                            </tr>
+                        </table>
+
+                        <div class="modal fade" id="konfirmasi_checkout" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-red">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title"><i class="fa fa-question"></i> Konfirmasi Pesanan</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Apakah anda yakin?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-shopping-cart"></i> Checkout</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="table table-renponsive" id="dynamic_field">
                             <tr>
                                 <td colspan="3">
                                     <div class="btn-group">
-                                        <button type="submit" class="btn btn-sm btn-primary"><i class="ace-icon fa fa-save bigger-120"></i> Order</button>
-                                        <a href="index.php?menu=pemesanan" class="btn btn-sm btn-danger"><i class="ace-icon fa fa-refresh bigger-120"></i> Batal</a>
+                                        <a data-toggle="modal" data-target="#konfirmasi_checkout" class="btn btn-sm btn-success"><i class="ace-icon fa fa-shopping-cart bigger-120"></i> Checkout</a>
+                                        <a data-toggle="modal" data-target="#batalkan" class="btn btn-sm btn-danger"><i class="ace-icon fa fa-refresh bigger-120"></i> Batal</a>
                                     </div>
                                 </td>
                             </tr>
@@ -85,59 +101,100 @@
     </div>
 </div><!-- /.main-content -->
 
-<!-- Modal Hapus -->
-<div class="modal fade" id="hapus" role="dialog">
+<div class="modal fade" id="batalkan" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header bg-primary">
+            <div class="modal-header red">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><i class="fa fa-trash"></i> Hapus Data</h4>
+                <h4 class="modal-title"><i class="fa fa-question"></i> Konfirmasi</h4>
             </div>
-            <form method="post" action="../action/pemesanan_bahan_baku.php" class="myform">
-                <div class="modal-body">
-                    <input type="hidden" name="hapus" value="1" readonly>
-                    <input type="hidden" name="nomor_faktur" readonly>
-                    <p>Apakah anda akan menghapus data pemesanan ini?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</button>
-                </div>
-            </form>
+            <div class="modal-body">
+                <p>Batalkan pesanan?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="index.php?menu=pemesanan" class="btn btn-sm btn-danger"><i class="ace-icon fa fa-refresh bigger-120"></i> Batalkan</a>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
 
-    function hapus(nomor_faktur){
-        $('.modal-body input[name=nomor_faktur]').val(nomor_faktur);
-    }
-
-    // LOADING SCREEN WHILE PROCESS SAVING/UPDATE/DELETE DATA
     $(document).ready(function(){
+        $("#dynamic_field").hide();
+        $("#add").click(function(){
+            $("#dynamic_field").show();
+        });
 
-        $('#mytable').DataTable({
-                    "bProcessing": true,
-                    "sAjaxSource": "<?php echo $base_url.'action/tampilkan_data_pemesanan_bahan_baku.php' ?>",
-                    "deferRender": true,
-                    "select": true,
-                    //"dom": 'Bfrtip',
-                    //"scrollY": "300",
-                    //"order": [[ 4, "desc" ]],
-                     "aoColumns": [
-                            { mData: 'no' } ,
-                            { mData: 'nomor_faktur' } ,
-                            { mData: 'id_supplier' } ,
-                            { mData: 'id_pegawai' },
-                            { mData: 'status_pemesanan' },
-                            { mData: 'tanggal_pemesanan' },
-                            { mData: 'action' }
-                    ],
-                    "aoColumnDefs": [
-                        { sClass: "dt-center", "aTargets": [0,3,4] },
-                        { sClass: "dt-nowrap", "aTargets": [0,1,2] }
-                    ]
+        var i = 1;
+        $('#add').click(function(){
+            i++;
+            $('#dynamic_field').prepend(
+                '<tr id="row'+i+'">' +
+                '<td width="20%">' +
+                    '<select name="id_bahan_baku[]" class="form-control select2" required>' +
+                        <?php
+                        // retrieve data dari API
+                        $file = file_get_contents($url_api."tampilkan_data_bahan_baku.php");
+                        $json = json_decode($file, true);
+                        $i=0;
+                        while ($i < count($json['data'])) {
+                            $id_bahan_baku[$i] = $json['data'][$i]['id_bahan_baku'];
+                            $nama_bahan_baku[$i] = $json['data'][$i]['id_bahan_baku'].' - '.$json['data'][$i]['nama_bahan_baku'];
+                            ?>
+                            '<option value="<?= $id_bahan_baku[$i] ?>" <?php if(isset($_GET['id'])){ if($_GET['id']==$id_bahan_baku[$i]) echo 'selected'; } ?>> <?= $nama_bahan_baku[$i] ?></option>'+
+                            <?php
+                            $i++;
+                        }
+                        ?>
+                    '</select>' +
+                '</td>' +
+                '<td width="60%">' +
+                    '<input type="text" name="jumlah_pemesanan[]" id="jumlah_pemesanan" value="" class="form-control" min="1" required>' +
+                '</td>' +
+                '<td width="5%"><button name="remove" id="'+i+'" class="btn btn-sm btn-danger btn_remove">X</button></td></tr>');
+        });
+
+        $(document).on('click','.btn_remove', function(){
+            var button_id = $(this).attr("id");
+            $("#row"+button_id+"").remove();
+        });
+
+        //Callback handler for form submit event
+        $(".myform").submit(function(e)
+        {
+
+        var formObj = $(this);
+        var formURL = formObj.attr("action");
+        var formData = new FormData(this);
+        $.ajax({
+            url: formURL,
+            type: 'POST',
+            data:  formData,
+            contentType: false,
+            cache: false,
+            processData:false,
+            beforeSend: function (){
+                       $("#loading").show(1000).html("<img src='../assets/images/loading.gif' height='100'>");
+                       },
+            success: function(data, textStatus, jqXHR){
+                    $("#result").html(data);
+                    $("#loading").hide();
+                    $("#konfirmasi_checkout").modal('hide');
+
+                    setTimeout(
+                        function()
+                        {
+                            $(location).attr('href', 'index.php?menu=pemesanan');
+                        }, 1500);
+            },
+                error: function(jqXHR, textStatus, errorThrown){
+         }
+        });
+            e.preventDefault(); //Prevent Default action.
+            e.unbind();
         });
 
     });
+
 </script>

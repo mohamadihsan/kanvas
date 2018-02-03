@@ -54,6 +54,10 @@
                                         <td><input type="number" name="harga" value="" class="form-control" placeholder="" min="0"></td>
                                     </tr>
                                     <tr>
+                                        <td width="15%">Stok</td>
+                                        <td><input type="number" name="stok" value="" class="form-control" placeholder="" min="0"></td>
+                                    </tr>
+                                    <tr>
                                         <td colspan="2">
                                             <div class="btn-group">
                                                 <button type="submit" class="btn btn-sm btn-primary"><i class="ace-icon fa fa-save bigger-120"></i> Simpan</button>
@@ -152,11 +156,12 @@
 </div>
 
 <script>
-    function ubah(id_produk, nama_produk, jenis_produk, harga){
+    function ubah(id_produk, nama_produk, jenis_produk, harga, stok){
         $('.well input[name=id_produk]').val(id_produk);
         $('.well input[name=nama_produk]').val(nama_produk);
         $('.well input[name=jenis_produk]').val(jenis_produk);
         $('.well input[name=harga]').val(harga);
+        $('.well input[name=stok]').val(stok);
     }
 
     function hapus(id_produk){

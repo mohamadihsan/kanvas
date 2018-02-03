@@ -228,7 +228,9 @@
                 <div class="modal-body">
                     <input type="hidden" name="hapus" value="3" readonly>
                     <input type="hidden" name="nomor_faktur" readonly>
-                    <p>Konfirmasi pembayaran telah diterima?</p>
+                    <p>Konfirmasi pembayaran telah diterima pada tanggal :</p>
+                    <!-- <label for="">Tanggal Pembayaran</label> -->
+                    <input type="date" name="tanggal_pembayaran" value="<?= date('Y-m-d') ?>" class="form-control">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-check-square"></i> Ya</button>

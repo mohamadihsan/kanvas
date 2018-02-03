@@ -18,6 +18,18 @@ if ($id_produksi=='') {
     $sql = "INSERT INTO produksi (id_produksi, id_produk, jumlah_produksi, tanggal)
             VALUES ('$id_produksi', '$id_produk', '$jumlah_produksi', '$tanggal')";
     if(mysqli_query($conn, $sql)){
+
+        // update stok produk
+        $sql = "SELECT stok FROM produk WHERE id_produk='$id_produk'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $stok_awal = $row['stok'];
+
+        $stok_akhir = $stok_awal + $jumlah_produksi;
+
+        $sql = "UPDATE produk SET stok='$stok_akhir' WHERE id_produk='$id_produk'";
+        mysqli_query($conn, $sql);
+
         $pesan_berhasil = "Data berhasil disimpan";
     }else{
         $pesan_gagal = "Data gagal disimpan";

@@ -1,6 +1,7 @@
 <?php
 // buka koneksi
 require_once '../config/connection.php';
+$periode = date('m Y');
 
 // sql statement
 $sql = "SELECT
@@ -29,7 +30,7 @@ $sql = "SELECT
         		DATE_FORMAT(
         			pp.tanggal_pemesanan,
         			'%m %Y'
-        		) = '01 2018'
+        		) = '$periode'
         ) AS c";
 $result = mysqli_query($conn, $sql);
 $data = array();
@@ -39,7 +40,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $sub_array['jumlah_produk']     = $row['jumlah_produk'];
     $sub_array['jumlah_pelanggan']   = $row['jumlah_pelanggan'];
     $sub_array['jumlah_pemesanan_bulan_ini']  = $row['jumlah_pemesanan_bulan_ini'];
-    
+
     $data[] = $sub_array;
 }
 
