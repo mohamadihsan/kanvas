@@ -20,7 +20,7 @@ if ($id_supplier=='') {
     $string = date('my');
 
     // retrieve ID terakhir yg tersimpan
-    $sql = "SELECT id_supplier 
+    $sql = "SELECT id_supplier
             FROM supplier
             ORDER BY id_supplier DESC
             LIMIT 1";
@@ -30,11 +30,11 @@ if ($id_supplier=='') {
         $id_terakhir_tersimpan = $data['id_supplier'];
     }else{
         $id_terakhir_tersimpan = $string.''.$init.'0000';
-    }        
+    }
 
     // panggil fungsi generate kode
     $id_supplier = buat_kode_user($string, $init, $id_terakhir_tersimpan);
-    
+
     // simpan data
     $sql = "INSERT INTO supplier (id_supplier, nama_supplier, alamat, no_telp, email, waktu_pengiriman, nama_pengguna, kata_sandi)
             VALUES ('$id_supplier', '$nama_supplier', '$alamat', '$no_telp', '$email', '$waktu_pengiriman', '$nama_pengguna', '$kata_sandi')";
@@ -45,7 +45,7 @@ if ($id_supplier=='') {
     }
 }else if($id_supplier!='' AND empty(mysqli_escape_string($conn, trim($_POST['hapus'])))){
     // perbaharui data
-    $sql = "UPDATE supplier 
+    $sql = "UPDATE supplier
             SET nama_supplier='$nama_supplier', alamat='$alamat', no_telp='$no_telp', email='$email', waktu_pengiriman='$waktu_pengiriman', nama_pengguna='$nama_pengguna', kata_sandi='$kata_sandi'
             WHERE id_supplier='$id_supplier'";
     if(mysqli_query($conn, $sql)){

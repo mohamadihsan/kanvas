@@ -31,7 +31,7 @@ if ($id_pelanggan=='') {
 
     // panggil fungsi generate kode
     $id_pelanggan = buat_kode_pelanggan($string, $init, $id_terakhir_tersimpan);
-
+    
     // simpan data
     $sql = "INSERT INTO pelanggan (id_pelanggan, nama_pelanggan, alamat, no_telp, email)
             VALUES ('$id_pelanggan', '$nama_pelanggan', '$alamat', '$no_telp', '$email')";

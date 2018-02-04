@@ -58,6 +58,14 @@ function buat_kode_produk($id_terakhir_tersimpan, $init)
         }else if($urutan >= 100 && $urutan < 1000){
             $id_baru = $init.''.$urutan;
         }
+    }else if($kode[4] > '0' && (int)$kode[3] > 0){
+        $urutan = $kode[3].''.$kode[4];
+        $urutan = (int)$urutan + 1;
+        if($urutan < 100){
+            $id_baru =  $init.'0'.$urutan;
+        }else if($urutan >= 100 && $urutan < 1000){
+            $id_baru = $init.''.$urutan;
+        }
     }else if((int)$kode[4] > 0){
         $urutan = $kode[2].''.$kode[3].''.$kode[4];
         $urutan = (int)$urutan + 1;
@@ -123,7 +131,7 @@ function buat_kode_pelanggan($string, $init, $id_terakhir_tersimpan)
     // cek kode
     if($kode[7] == '0' && $kode[8] == '0' && $kode[9] == '0'){
         $urutan = (int)$kode[10] + 1;
-        if($urutan < 100){
+        if($urutan < 10){
             $id_baru =  $init.'000'.$urutan;
         }else if($urutan >= 10 && $urutan < 100){
             $id_baru = $init.'00'.$urutan;
