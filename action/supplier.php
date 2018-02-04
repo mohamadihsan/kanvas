@@ -34,7 +34,7 @@ if ($id_supplier=='') {
 
     // panggil fungsi generate kode
     $id_supplier = buat_kode_user($string, $init, $id_terakhir_tersimpan);
-
+    
     // simpan data
     $sql = "INSERT INTO supplier (id_supplier, nama_supplier, alamat, no_telp, email, waktu_pengiriman, nama_pengguna, kata_sandi)
             VALUES ('$id_supplier', '$nama_supplier', '$alamat', '$no_telp', '$email', '$waktu_pengiriman', '$nama_pengguna', '$kata_sandi')";

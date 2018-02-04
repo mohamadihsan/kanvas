@@ -77,7 +77,7 @@ if(mysqli_escape_string($conn, trim($_POST['hapus']))=='0'){
     // cek data apakah sudah tersedia atau belum
     $sql = "SELECT id_peramalan
             FROM peramalan
-            WHERE periode='$periode'";
+            WHERE periode='$periode' AND id_produk='$id_produk'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
         $data = mysqli_fetch_assoc($result);

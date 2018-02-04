@@ -85,7 +85,7 @@ function buat_kode_user($string, $init, $id_terakhir_tersimpan)
     // cek kode
     if($kode[7] == '0' && $kode[8] == '0' && $kode[9] == '0'){
         $urutan = (int)$kode[10] + 1;
-        if($urutan < 100){
+        if($urutan < 10){
             $id_baru =  $init.'000'.$urutan;
         }else if($urutan >= 10 && $urutan < 100){
             $id_baru = $init.'00'.$urutan;
