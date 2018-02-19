@@ -88,7 +88,7 @@
                                         $safety_stock[$i] = $json['data'][$i]['safety_stock'];
                                         $status_stok[$i] = $json['data'][$i]['status_stok'];
 
-                                        if ($status_stok[$i] == 'tidak aman') {
+                                        if ($stok[$i] < $safety_stock[$i]) {
                                             $status_stok[$i] = '<span class="label label-danger label-white middle">
                                                 <i class="ace-icon fa fa-close bigger-120"></i>
                                                 tidak aman
