@@ -11,10 +11,10 @@
         </div>
 
         <div class="page-content">
-            
+
             <div class="page-header">
                 <h1>
-                    Peramalan Produksi 
+                    Peramalan Produksi
                     <small>
                         <i class="ace-icon fa fa-angle-double-right"></i>
                         Pengolahan Data
@@ -27,11 +27,11 @@
                     <!-- PAGE CONTENT BEGINS -->
 
                     <button data-toggle="collapse" data-target=".tampil" class="btn btn-sm"><i class="ace-icon fa fa-plus bigger-110"></i> Form</button>
-                    
+
                     <div id="" class="collapse tampil">
                         <div class="well">
                             <form action="../action/peramalan.php" method="post" class="myform">
-                                
+
                                 <!-- hidden status hapus false -->
                                 <input type="hidden" name="hapus" value="0" class="form-control" placeholder="" readonly>
 
@@ -41,6 +41,7 @@
                                         <td width="15%">Produk</td>
                                         <td>
                                             <select name="id_produk" class="form-control select2" required>
+                                                <option value="semua"> Semua Produk</option>
                                                 <?php
                                                 // retrieve data dari API
                                                 $file = file_get_contents($url_api."tampilkan_data_produk.php");
@@ -89,11 +90,11 @@
                                         </td>
                                     </tr>
                                 </table>
-                            </form> 
-                            
+                            </form>
+
                               <!-- Tampilkan hasil -->
-                            <div id="result"></div>   
-                        
+                            <div id="result"></div>
+
                         </div>
                     </div>
 
@@ -101,10 +102,10 @@
                         <div class="well">
                         Produksi
                         <button data-toggle="collapse" data-target=".tampil_detail" class="btn btn-sm"><i class="ace-icon fa fa-close bigger-110"></i> Tutup</button>
-                    
+
                         </div>
-                    </div>    
-                    
+                    </div>
+
                     <!-- loading -->
                     <center><div id="loading"></div></center>
 
@@ -123,9 +124,10 @@
                                 <tr class="">
                                     <th width="7%" class="text-center">No</th>
                                     <th width="15%" class="text-left">Periode</th>
-                                    <th width="40%" class="text-left">ID Produk</th>
+                                    <th width="20%" class="text-left">ID Produk</th>
+                                    <th width="40%" class="text-left">Nama Produk</th>
                                     <th width="15%" class="text-left">Hasil Peramalan</th>
-                                    <th width="5%" class="text-center"></th>
+                                    <!-- <th width="5%" class="text-center"></th> -->
                                 </tr>
                             </thead>
                         </table>
@@ -154,21 +156,21 @@
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</button>
                 </div>
-            </form>    
+            </form>
         </div>
     </div>
 </div>
-            
+
 <script>
     function detail(id_peramalan) {
-        
+
     }
 
     function hapus(id_peramalan){
         $('.modal-body input[name=id_peramalan]').val(id_peramalan);
     }
-    
-    // LOADING SCREEN WHILE PROCESS SAVING/UPDATE/DELETE DATA 
+
+    // LOADING SCREEN WHILE PROCESS SAVING/UPDATE/DELETE DATA
     $(document).ready(function(){
 
         $('#mytable').DataTable({
@@ -183,27 +185,27 @@
                             { mData: 'no' } ,
                             { mData: 'periode' } ,
                             { mData: 'id_produk' } ,
-                            { mData: 'hasil_peramalan' },
-                            { mData: 'action_hapus'}
+                            { mData: 'nama_produk' } ,
+                            { mData: 'hasil_peramalan' }
                     ]
         });
 
         //Callback handler for form submit event
         $(".myform").submit(function(e)
         {
-      
+
         var formObj = $(this);
         var formURL = formObj.attr("action");
         var formData = new FormData(this);
         $.ajax({
             url: formURL,
             type: 'POST',
-            data:  formData,        
+            data:  formData,
             contentType: false,
             cache: false,
             processData:false,
             beforeSend: function (){
-                       $("#loading").show(1000).html("<img src='../assets/images/loading.gif' height='100'>");                   
+                       $("#loading").show(1000).html("<img src='../assets/images/loading.gif' height='100'>");
                        },
             success: function(data, textStatus, jqXHR){
                     $("#result").html(data);
@@ -212,11 +214,11 @@
                     $('#mytable').DataTable().ajax.reload();
             },
                 error: function(jqXHR, textStatus, errorThrown){
-         }         
+         }
         });
             e.preventDefault(); //Prevent Default action.
             e.unbind();
-        });    
+        });
 
     });
 </script>

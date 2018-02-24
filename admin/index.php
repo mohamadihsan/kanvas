@@ -113,6 +113,10 @@ switch ($jabatan) {
 					include_once '../users/general-pages/profil.php';
 					break;
 
+				case 'validasi_pengadaan':
+					include_once '../users/manager-keuangan/validasi_pengadaan.php';
+					break;
+
 				default:
 					include_once '../users/manager-keuangan/beranda.php';
 					break;

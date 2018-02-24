@@ -30,6 +30,9 @@ while ($row = mysqli_fetch_assoc($result)) {
     $sub_array['tanggal_pemesanan'] = $row['tanggal_pemesanan'];
 	$sub_array['action']	        = ' <a href="./index.php?menu=pemesanan&faktur='.$row['nomor_faktur'].'" class="btn btn-warning btn-xs"><i class="ace-icon fa fa-file-text-o bigger-120"></i> Detail</a>
                                         <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#hapus" onclick="return hapus(\''.$row['nomor_faktur'].'\')"><i class="ace-icon fa fa-trash-o bigger-120"></i> Hapus</button>';
+    $sub_array['validasi_pengadaan']   = ' <a href="./index.php?menu=validasi_pengadaan&faktur='.$row['nomor_faktur'].'" class="btn btn-warning btn-xs"><i class="ace-icon fa fa-file-text-o bigger-120"></i> Detail</a>
+                                        <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#konfirmasi" onclick="return konfirmasi(\''.$row['nomor_faktur'].'\')"><i class="ace-icon fa fa-file-text bigger-120"></i> Konfirmasi</button>';
+
     $sub_array['action_diterima']    = ' <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#terima" onclick="return terima(\''.$row['nomor_faktur'].'\')"><i class="ace-icon fa fa-check-square bigger-120"></i> Terima</button>';
 
     // ubah tampilan data
@@ -40,6 +43,10 @@ while ($row = mysqli_fetch_assoc($result)) {
     }else if ($sub_array['status_pemesanan'] == 'DK') {
         $sub_array['status_pemesanan'] = '<span class="label label-info label-white middle">
                                                 proses pengiriman
+                                            </span>';
+    }else if ($sub_array['status_pemesanan'] == 'P') {
+        $sub_array['status_pemesanan'] = '<span class="label label-warning label-white middle">
+                                                Menunggu Persetujuan Keuangan
                                             </span>';
     }else{
         $sub_array['status_pemesanan'] = '<span class="label label-success label-white middle">

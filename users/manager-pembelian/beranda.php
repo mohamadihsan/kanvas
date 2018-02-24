@@ -15,7 +15,9 @@
             <div class="row">
                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                     <!-- PAGE CONTENT BEGINS -->
-                    <h5><b>Filter :</b></h5>
+                    <h2>Beranda Manager Pembelian</h2>
+                    <p>Selamat datang, <strong><?= $_SESSION['nama_lengkap'] ?></strong></p>
+                    <!-- <h5><b>Filter :</b></h5>
                     <form action="" method="get">
                         <select name="id" class="form-control select2" required>
                             <?php
@@ -62,7 +64,7 @@
 
                     <div style="width:100%;">
                         <canvas id="canvas"></canvas>
-                    </div>
+                    </div> -->
 
                 </div>
             </div><!-- /.row -->

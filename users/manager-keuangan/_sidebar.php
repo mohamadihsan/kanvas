@@ -22,6 +22,15 @@
 			<b class="arrow"></b>
 		</li>
 
+		<li class="<?php if($menu=='validasi_pengadaan') echo "active"; ?>">
+			<a href="./index.php?menu=validasi_pengadaan">
+				<i class="menu-icon fa fa-money"></i>
+				<span class="menu-text"> Validasi Pengadaan </span>
+			</a>
+
+			<b class="arrow"></b>
+		</li>
+
 	</ul><!-- /.nav-list -->
 
 	<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

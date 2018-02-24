@@ -75,7 +75,7 @@
 
 														<button type="submit" class="width-35 pull-right btn btn-sm btn-success">
 															<i class="ace-icon fa fa-key"></i>
-															<span class="bigger-110">Login</span>
+															<span class="bigger-110">Logind</span>
 														</button>
 													</div>
 

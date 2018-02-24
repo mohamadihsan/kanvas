@@ -33,7 +33,7 @@
 						<div class="login-container">
 							<div class="center">
 								<h1>
-									<i class="ace-icon fa fa-file-text-o green"></i>
+									<!-- <i class="ace-icon fa fa-file-text-o green"></i> -->
 									<span class="red">PT.Kanvas</span>
 									<span class="white" id="id-text2">Mulia</span>
 								</h1>
@@ -46,6 +46,9 @@
 								<div id="login-box" class="login-box visible widget-box no-border">
 									<div class="widget-body">
 										<div class="widget-main">
+											<center>
+												<img src="../assets/images/logo.png" alt="logo" class="img-responsive" width="50%" height="50px">
+											</center>
 											<h4 class="header green lighter bigger">
 												<i class="ace-icon fa fa-lock blue"></i>
 												Login
